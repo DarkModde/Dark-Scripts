@@ -1,9 +1,6 @@
 // ==UserScript==
 // @name         Alura-Infinity
 // @namespace    https://cursos.alura.com.br/
-// @version      29/04/2025
-// @description  eu to cansado jefe é mt coisakkkk
-// @author       marcos10pc
 // @match        https://cursos.alura.com.br/course/*/task/*
 // @icon         https://i.imgur.com/OtfkTcS.png
 // @grant        none
