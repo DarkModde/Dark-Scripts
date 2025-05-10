@@ -1,12 +1,8 @@
 (async () => {
-    const SCRIPT_NAME = "Assistente de Tarefas";
-    
-    // Simplificando as funções do console
     console.clear();
     const noop = () => {};
     console.warn = console.error = window.debug = noop;
     
-    // Sistema de notificações personalizado
     class NotificationSystem {
         constructor() {
             this.initStyles();
@@ -29,7 +25,6 @@
                     align-items: flex-end;
                     pointer-events: none;
                 }
-                
                 .notification {
                     background: rgba(20, 20, 20, 0.9);
                     color: #f0f0f0;
@@ -52,19 +47,16 @@
                     transform: translateY(-20px);
                     transition: opacity 0.3s ease, transform 0.3s ease;
                 }
-                
                 .notification.show {
                     opacity: 1;
                     transform: translateY(0);
                 }
-                
                 .notification-icon {
                     margin-right: 10px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                 }
-                
                 .notification-progress {
                     position: absolute;
                     bottom: 0;
@@ -74,28 +66,22 @@
                     background: #f0f0f0;
                     opacity: 0.8;
                 }
-                
                 @keyframes progress-animation {
                     from { width: 100%; }
                     to { width: 0%; }
                 }
-                
                 .notification-progress.animate {
                     animation: progress-animation linear forwards;
                 }
-                
                 .notification.success .notification-icon {
                     color: #4caf50;
                 }
-                
                 .notification.error .notification-icon {
                     color: #f44336;
                 }
-                
                 .notification.info .notification-icon {
                     color: #2196f3;
                 }
-                
                 .notification.warning .notification-icon {
                     color: #ff9800;
                 }
@@ -139,10 +125,7 @@
         }
 
         show(message, options = {}) {
-            const {
-                duration = 5000,
-                type = 'info'
-            } = options;
+            const { duration = 5000, type = 'info' } = options;
             
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
@@ -160,7 +143,6 @@
             
             this.notificationContainer.appendChild(notification);
             
-            // Trigger reflow for animation to work
             notification.offsetHeight;
             notification.classList.add('show');
             
@@ -299,8 +281,7 @@
             }
 
             notifications.success("Tarefa corrigida com sucesso!", 6000);
-        } catch (error) {
-        }
+        } catch (error) {}
     }
 
     function loadScript(url) {
@@ -338,47 +319,17 @@
     const originalFetch = window.fetch;
     const notifications = new NotificationSystem();
 
-    // Sistema de segurança para bloquear interações indesejadas
     function enableSecurityMeasures() {
         document.body.style.userSelect = 'none';
         document.body.style.webkitUserSelect = 'none';
         document.body.style.msUserSelect = 'none';
         document.body.style.mozUserSelect = 'none';
         
-        // Impede arrastar imagens
         document.addEventListener('dragstart', (e) => {
             e.preventDefault();
             return false;
         });
         
-        // Desativa menu de contexto (botão direito)
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            return false;
-        });
-        
-        // Bloqueia teclas de atalho para ferramentas de desenvolvedor
-        document.addEventListener('keydown', (e) => {
-            // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
-            if (
-                e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
-                (e.ctrlKey && (e.key === 'U' || e.key === 'u'))
-            ) {
-                e.preventDefault();
-                return false;
-            }
-        });
-        
-        // Desabilitar visualização da fonte (Ctrl+U)
-        window.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
-                e.preventDefault();
-                return false;
-            }
-        });
-        
-        // Estilo CSS para imagens
         const styleElement = document.createElement('style');
         styleElement.textContent = `
             img, svg, canvas, video {
@@ -390,7 +341,10 @@
     }
 
     try {
-        await loadCss('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+        await Promise.all([
+            loadCss('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap'),
+            loadScript('https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/ProtectionScript.js')
+        ]);
         notifications.success(`TarefasResolver iniciado com sucesso!`, 3000);
         notifications.info("Aguardando o login no Sala do Futuro...", 6000);
         enableSecurityMeasures();
