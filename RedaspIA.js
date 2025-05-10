@@ -1,3 +1,7 @@
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/ProtectionScript.js';
+document.head.appendChild(script);
+
 console.clear();
 const noop = () => {};
 console.warn = console.error = window.debug = noop;
@@ -17,16 +21,13 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
         for (const propriedade of propriedadesReact) {
           const handler = campoTexto[propriedade];
           if (handler && typeof handler.onChange === "function") {
-            
             const eventoSimulado = {
               target: { value: textoParaInserir },
               currentTarget: { value: textoParaInserir },
               preventDefault: () => {},
               stopPropagation: () => {}
             };
-            
             handler.onChange(eventoSimulado);
-            
             await new Promise(resolve => setTimeout(resolve, 100));
             return true;
           }
@@ -58,8 +59,7 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
           campoTexto.select();
           document.execCommand("delete", false);
           document.execCommand("insertText", false, textoParaInserir);
-        } catch (erro) {
-        }
+        } catch (erro) {}
       }
       resolve();
     }, 150));
@@ -76,186 +76,45 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
           });
           campoTexto.value = textoParaInserir;
           campoTexto.dispatchEvent(eventoInput);
-        } catch (erro) {
-        }
+        } catch (erro) {}
       }
       resolve();
     }, 250));
     
     await new Promise(resolve => setTimeout(resolve, 500));
-    
     return true;
-  }
-  
-  function criarEstiloNotificacao() {
+}
+
+function criarEstiloNotificacao() {
     if (document.getElementById('estilo-notificacao')) return;
     
     const estiloNotificacao = document.createElement('style');
     estiloNotificacao.id = 'estilo-notificacao';
-    estiloNotificacao.textContent = `
-      .notificacao-container {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        max-width: 350px;
-      }
-      
-      .notificacao {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        padding: 16px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        transform: translateX(120%);
-        opacity: 0;
-        transition: transform 0.4s ease, opacity 0.3s ease;
-        overflow: hidden;
-        position: relative;
-      }
-      
-      .notificacao.mostrar {
-        transform: translateX(0);
-        opacity: 1;
-      }
-      
-      .notificacao-icone {
-        flex-shrink: 0;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-      }
-      
-      .notificacao-conteudo {
-        flex-grow: 1;
-      }
-      
-      .notificacao-titulo {
-        font-weight: 600;
-        font-size: 16px;
-        margin: 0 0 4px 0;
-      }
-      
-      .notificacao-mensagem {
-        font-size: 14px;
-        margin: 0;
-        color: #666;
-      }
-      
-      .notificacao-fechar {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 18px;
-        color: #999;
-        padding: 0;
-        transition: color 0.2s;
-      }
-      
-      .notificacao-fechar:hover {
-        color: #555;
-      }
-      
-      .notificacao-progresso {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 3px;
-        width: 100%;
-        transform-origin: left center;
-      }
-      
-      .notificacao-sucesso .notificacao-icone {
-        background-color: #edf7ed;
-        color: #4caf50;
-      }
-      
-      .notificacao-sucesso .notificacao-progresso {
-        background-color: #4caf50;
-      }
-      
-      .notificacao-info .notificacao-icone {
-        background-color: #e9f5fe;
-        color: #2196f3;
-      }
-      
-      .notificacao-info .notificacao-progresso {
-        background-color: #2196f3;
-      }
-      
-      .notificacao-aviso .notificacao-icone {
-        background-color: #fff8e6;
-        color: #ff9800;
-      }
-      
-      .notificacao-aviso .notificacao-progresso {
-        background-color: #ff9800;
-      }
-      
-      .notificacao-erro .notificacao-icone {
-        background-color: #feebeb;
-        color: #f44336;
-      }
-      
-      .notificacao-erro .notificacao-progresso {
-        background-color: #f44336;
-      }
-      
-      @keyframes progresso {
-        0% { transform: scaleX(1); }
-        100% { transform: scaleX(0); }
-      }
-      
-      .pulse {
-        animation: pulse 1s ease-in-out;
-      }
-      
-      @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-      }
-    `;
-    
+    estiloNotificacao.textContent = `.notificacao-container{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:350px}.notificacao{background-color:#fff;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);padding:16px;display:flex;align-items:center;gap:12px;transform:translateX(120%);opacity:0;transition:transform .4s ease,opacity .3s ease;overflow:hidden;position:relative}.notificacao.mostrar{transform:translateX(0);opacity:1}.notificacao-icone{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%}.notificacao-conteudo{flex-grow:1}.notificacao-titulo{font-weight:600;font-size:16px;margin:0 0 4px 0}.notificacao-mensagem{font-size:14px;margin:0;color:#666}.notificacao-fechar{background:0;border:0;cursor:pointer;font-size:18px;color:#999;padding:0;transition:color .2s}.notificacao-fechar:hover{color:#555}.notificacao-progresso{position:absolute;bottom:0;left:0;height:3px;width:100%;transform-origin:left center}.notificacao-sucesso .notificacao-icone{background-color:#edf7ed;color:#4caf50}.notificacao-sucesso .notificacao-progresso{background-color:#4caf50}.notificacao-info .notificacao-icone{background-color:#e9f5fe;color:#2196f3}.notificacao-info .notificacao-progresso{background-color:#2196f3}.notificacao-aviso .notificacao-icone{background-color:#fff8e6;color:#ff9800}.notificacao-aviso .notificacao-progresso{background-color:#ff9800}.notificacao-erro .notificacao-icone{background-color:#feebeb;color:#f44336}.notificacao-erro .notificacao-progresso{background-color:#f44336}@keyframes progresso{0%{transform:scaleX(1)}100%{transform:scaleX(0)}}.pulse{animation:pulse 1s ease-in-out}@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}`;
     document.head.appendChild(estiloNotificacao);
-  }
-  
-  function inicializarNotificacoes() {
+}
+
+function inicializarNotificacoes() {
     criarEstiloNotificacao();
-    
     if (!document.querySelector('.notificacao-container')) {
       const container = document.createElement('div');
       container.className = 'notificacao-container';
       document.body.appendChild(container);
     }
-  }
-  
-  // Sistema de notificações baseado em promises para garantir sincronização
-  function mostrarNotificacaoSinc(tipo, titulo, mensagem, duracao = 3000) {
+}
+
+function mostrarNotificacaoSinc(tipo, titulo, mensagem, duracao = 3000) {
     return new Promise(resolve => {
       inicializarNotificacoes();
-      
-      // Remover notificações anteriores do mesmo tipo (opcional)
       const notificacoesAnteriores = document.querySelectorAll(`.notificacao-${tipo}`);
       notificacoesAnteriores.forEach(notif => {
-        if (notif && notif.parentElement) {
-          notif.parentElement.removeChild(notif);
-        }
+        if (notif && notif.parentElement) notif.parentElement.removeChild(notif);
       });
       
       const container = document.querySelector('.notificacao-container');
       const notificacao = document.createElement('div');
       notificacao.className = `notificacao notificacao-${tipo}`;
       
-      // Configurar ícones baseados no tipo
       let icone = '';
       switch (tipo) {
         case 'sucesso':
@@ -272,68 +131,42 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
           break;
       }
       
-      // Construir HTML da notificação
-      notificacao.innerHTML = `
-        <div class="notificacao-icone">${icone}</div>
-        <div class="notificacao-conteudo">
-          <h4 class="notificacao-titulo">${titulo}</h4>
-          <p class="notificacao-mensagem">${mensagem}</p>
-        </div>
-        <button class="notificacao-fechar">×</button>
-        <div class="notificacao-progresso"></div>
-      `;
-      
-      // Adicionar ao container
+      notificacao.innerHTML = `<div class="notificacao-icone">${icone}</div><div class="notificacao-conteudo"><h4 class="notificacao-titulo">${titulo}</h4><p class="notificacao-mensagem">${mensagem}</p></div><button class="notificacao-fechar">×</button><div class="notificacao-progresso"></div>`;
       container.appendChild(notificacao);
       
-      // Animar entrada
       setTimeout(() => {
         notificacao.classList.add('mostrar');
         const progressoEl = notificacao.querySelector('.notificacao-progresso');
         progressoEl.style.animation = `progresso ${duracao/1000}s linear`;
       }, 10);
       
-      // Configurar botão de fechar
       const botaoFechar = notificacao.querySelector('.notificacao-fechar');
       botaoFechar.addEventListener('click', () => {
         fecharNotificacao(notificacao);
         resolve();
       });
       
-      // Auto-fechar após duração
       const timeoutId = setTimeout(() => {
         fecharNotificacao(notificacao);
         resolve();
       }, duracao);
       
-      // Adicionar animação de pulse ao ícone
       const iconeEl = notificacao.querySelector('.notificacao-icone');
       iconeEl.classList.add('pulse');
-      
-      // Armazenar timeoutId para poder cancelar se o usuário fechar manualmente
       notificacao.dataset.timeoutId = timeoutId;
     });
-  }
-  
-  function fecharNotificacao(notificacao) {
-    // Cancelar timeout se existir
-    if (notificacao.dataset.timeoutId) {
-      clearTimeout(parseInt(notificacao.dataset.timeoutId));
-    }
-    
-    // Animar saída
+}
+
+function fecharNotificacao(notificacao) {
+    if (notificacao.dataset.timeoutId) clearTimeout(parseInt(notificacao.dataset.timeoutId));
     notificacao.style.opacity = '0';
     notificacao.style.transform = 'translateX(120%)';
-    
-    // Remover do DOM após animação
     setTimeout(() => {
-      if (notificacao.parentElement) {
-        notificacao.parentElement.removeChild(notificacao);
-      }
+      if (notificacao.parentElement) notificacao.parentElement.removeChild(notificacao);
     }, 300);
-  }
-  
-  async function obterRespostaIA(promptTexto) {
+}
+
+async function obterRespostaIA(promptTexto) {
     try {
       const resposta = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyDtanrJtBBHgkmelHFhAowEXAyjLyM4Y1c`, {
         method: "POST",
@@ -370,9 +203,9 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
       await mostrarNotificacaoSinc('erro', 'Erro', `Falha ao obter resposta da IA: ${erro.message}`, 5000);
       throw erro;
     }
-  }
-  
-  async function verificarRedacao() {
+}
+
+async function verificarRedacao() {
     const elementoRedacao = document.querySelector("p.MuiTypography-root.MuiTypography-body1.css-m576f2");
     
     if (elementoRedacao && elementoRedacao.textContent.includes("Redação")) {
@@ -381,7 +214,7 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
         
         const coletaneaHTML = document.querySelector(".ql-editor").innerHTML;
         const enunciado = document.querySelector(".ql-align-justify").innerText;
-        const generoTextual = document.querySelector(".css-1cq7p20").innerText;
+        const generoTextual = document.querySelector(".css-1pvvm3t").innerText;
         const criteriosAvaliacao = document.querySelector(".css-1pvvm3t").innerText;
         
         const dadosRedacao = {
@@ -391,8 +224,7 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
           criteriosAvaliacao: criteriosAvaliacao
         };
         
-        const promptGeracaoRedacao = `
-                Usando as informações a seguir sobre uma tarefa de redação, você precisa me fornecer:
+        const promptGeracaoRedacao = `Usando as informações a seguir sobre uma tarefa de redação, você precisa me fornecer:
                 1. Um título para a redação
                 2. O texto completo da redação
                 
@@ -417,8 +249,7 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
         
         await mostrarNotificacaoSinc('info', 'Humanizando', 'Tornando o texto mais natural...', 5000);
         
-        const promptHumanizacao = `
-                Reescreva o seguinte texto acadêmico em português para que pareça escrito por um estudante humano, não por IA.
+        const promptHumanizacao = `Reescreva o seguinte texto acadêmico em português para que pareça escrito por um estudante humano, não por IA.
                 
                 Regras importantes:
                 1. Mantenha o conteúdo e os argumentos principais intactos
@@ -433,8 +264,7 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
                 Texto para reescrever:
                 ${textoRedacao}
                 
-                Lembre-se: devolva APENAS o texto reescrito, sem comentários ou explicações adicionais.
-            `;
+                Lembre-se: devolva APENAS o texto reescrito, sem comentários ou explicações adicionais.`;
         
         const textoHumanizado = await obterRespostaIA(promptHumanizacao, 'Humanizando o texto da redação...');
         
@@ -446,7 +276,6 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
         await manipularTextareaMUI(campoConteudo, textoHumanizado);
         
         await mostrarNotificacaoSinc('sucesso', 'Tudo Pronto! 🎉', 'Redação inserida com sucesso! Tudo pronto para enviar!', 5000);
-        
       } catch (erro) {
         await mostrarNotificacaoSinc('erro', 'Erro Fatal', `Ocorreu um erro: ${erro.message}`, 5000);
         console.error('[ERROR]', erro);
@@ -454,7 +283,7 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
     } else {
       await mostrarNotificacaoSinc('erro', 'Página Inválida', 'Você precisa usar o script em uma página de redação. ⚠️', 5000);
     }
-  }
-  
-  verificarRedacao();
-  console.clear();
+}
+
+verificarRedacao();
+console.clear();
