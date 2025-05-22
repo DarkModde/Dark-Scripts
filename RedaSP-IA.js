@@ -370,48 +370,45 @@ function fecharNotificacao(notificacao) {
 
 async function obterRespostaIA(promptTexto) {
     try {
-      const resposta = await fetch('https://api.deepseek.com/v1/chat/completions', {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Authorization": "Bearer sk-653a72d5f2764beab774fbd64480aa0f" // Substitua pela sua chave de API
-        },
-        body: JSON.stringify({
-          model: "deepseek-chat",
-          messages: [
-            {
-              role: "user",
-              content: promptTexto
-            }
-          ],
-          temperature: 0.7,
-          max_tokens: 2000,
-          top_p: 1,
-          frequency_penalty: 0,
-          presence_penalty: 0
-        })
-      });
-      
-      if (!resposta.ok) {
-        await mostrarNotificacaoSinc('erro', 'Erro', `Falha na API do DeepSeek: ${resposta.status}`, 5000);
-        throw new Error("Erro na API do DeepSeek: " + resposta.status);
-      }
-      
-      const dadosResposta = await resposta.json();
-      
-      if (!dadosResposta.choices?.[0]?.message?.content) {
-        await mostrarNotificacaoSinc('erro', 'Erro', 'Resposta inválida da API do DeepSeek', 5000);
-        throw new Error("Resposta inválida da API do DeepSeek");
-      }
-      
-      await mostrarNotificacaoSinc('sucesso', 'Sucesso', 'Redação gerada com sucesso!', 5000);
-      return dadosResposta.choices[0].message.content;
+        const resposta = await fetch("https://corsproxy.io/?url=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDDauPWG3xlm6QXkGvt0ZmFS9jcNnpS0ps", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                contents: [
+                    {
+                        parts: [
+                            {
+                                text: promptTexto
+                            }
+                        ]
+                    }
+                ]
+            })
+        });
+
+        if (!resposta.ok) {
+            await mostrarNotificacaoSinc('erro', 'Erro', `Falha na API do Gemini: ${resposta.status}`, 5000);
+            throw new Error("Erro na API do Gemini: " + resposta.status);
+        }
+
+        const dadosResposta = await resposta.json();
+
+        const textoGerado = dadosResposta?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!textoGerado) {
+            await mostrarNotificacaoSinc('erro', 'Erro', 'Resposta inválida da API do Gemini', 5000);
+            throw new Error("Resposta inválida da API do Gemini");
+        }
+
+        return textoGerado;
     } catch (erro) {
-      console.error("[ERROR] Falha ao obter resposta da IA:", erro);
-      await mostrarNotificacaoSinc('erro', 'Erro', `Falha ao obter resposta da IA: ${erro.message}`, 5000);
-      throw erro;
+        console.error("[ERROR] Falha ao obter resposta da IA:", erro);
+        await mostrarNotificacaoSinc('erro', 'Erro', `Falha ao obter resposta da IA: ${erro.message}`, 5000);
+        throw erro;
     }
 }
+
 
 async function verificarRedacao() {
     const elementoRedacao = document.querySelector("p.MuiTypography-root.MuiTypography-body1.css-m576f2");
