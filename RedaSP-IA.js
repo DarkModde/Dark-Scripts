@@ -103,7 +103,7 @@ const promptsHumanizacao = [
     5. Reescreva as referências e exemplos, mas de uma forma mais simples e natural;
     6. Evite o uso excessivo de jargões ou termos técnicos difíceis;
     7. Varie o ritmo das frases para dar mais vida ao texto, evitando uma estrutura previsível;
-    8. Use expressões típicas da linguagem humana, como “por outro lado”, “além disso” e “no entanto”;
+    8. Use expressões típicas da linguagem humana, como "por outro lado", "além disso" e "no entanto";
     9. Não se preocupe com uma gramática perfeita – adicione algumas pausas ou repetições sutis;
     10. Use um vocabulário simples, de fácil compreensão, como o de um estudante;
     11. Mantenha o tom emocional e a personalidade do texto consistente ao longo do texto;
@@ -126,7 +126,7 @@ const promptsHumanizacao = [
     5. Reescreva as referências e exemplos, mas de forma mais simples e fluída;
     6. Evite usar palavras muito técnicas ou difíceis de entender;
     7. Varie o ritmo das frases e crie uma narrativa menos repetitiva;
-    8. Inclua palavras e expressões típicas de uma conversa, como “além disso” e “no entanto”;
+    8. Inclua palavras e expressões típicas de uma conversa, como "além disso" e "no entanto";
     9. Permita pequenas falhas na gramática e pontuação, como se fosse uma escrita mais espontânea;
     10. Adapte o vocabulário para algo mais acessível, como se fosse de um estudante comum;
     11. Mantenha o tom emocional e a consistência ao longo de todo o texto;
@@ -149,7 +149,7 @@ const promptsHumanizacao = [
     5. Reescreva as referências e exemplos, mas de forma mais acessível e fluida;
     6. Evite palavras complicadas ou excessivamente técnicas;
     7. Faça variações no ritmo das frases, para tornar o texto mais interessante;
-    8. Utilize expressões comuns como “por outro lado” ou “no entanto” para dar fluidez;
+    8. Utilize expressões comuns como "por outro lado" ou "no entanto" para dar fluidez;
     9. Não se preocupe em ter uma pontuação ou gramática perfeitas, pequenas pausas são bem-vindas;
     10. Adapte o vocabulário para algo mais simples, como um estudante faria;
     11. Garanta que o tom e a emoção do texto permaneçam consistentes;
@@ -166,13 +166,13 @@ const promptsHumanizacao = [
     Aqui estão algumas orientações para a reescrita:
 
     1. Mantenha os principais pontos e ideias do texto;
-    2. Deixe o texto um pouco mais “imperfeito”, com pequenas falhas que tornem a escrita mais realista;
+    2. Deixe o texto um pouco mais "imperfeito", com pequenas falhas que tornem a escrita mais realista;
     3. Use uma linguagem mais simples e natural, fugindo de um tom robótico;
     4. Preserve a estrutura geral e os parágrafos do texto original;
     5. Reescreva as referências e exemplos de forma mais simples e fluída;
     6. Evite termos técnicos ou difíceis de entender, optando por algo mais acessível;
     7. Varie o ritmo das frases e altere a estrutura para criar mais dinamismo;
-    8. Inclua expressões comuns, como “no entanto” ou “além disso”, para deixar o texto mais natural;
+    8. Inclua expressões comuns, como "no entanto" ou "além disso", para deixar o texto mais natural;
     9. Não se preocupe com uma gramática excessivamente rígida – pequenas falhas são aceitáveis;
     10. Use um vocabulário simples, com o nível de um estudante comum;
     11. Mantenha o tom e a consistência emocional durante o texto inteiro;
@@ -195,7 +195,7 @@ const promptsHumanizacao = [
     5. Reescreva as referências e exemplos de maneira mais simples, mantendo o significado;
     6. Evite o uso de palavras ou termos técnicos que possam tornar o texto difícil;
     7. Varie o ritmo das frases e crie uma narrativa mais dinâmica e interessante;
-    8. Use expressões típicas de uma conversa cotidiana, como “por outro lado” ou “além disso”;
+    8. Use expressões típicas de uma conversa cotidiana, como "por outro lado" ou "além disso";
     9. Permita pequenas falhas ou variações na pontuação, para dar um toque mais natural;
     10. Adapte o vocabulário para algo que um estudante comum usaria;
     11. Garanta que o tom e a emoção do texto se mantenham consistentes ao longo de toda a escrita;
@@ -236,7 +236,7 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
         }
       }
     } catch (erro) {
-      console.error("[ERROR]", erro);
+      return false;
     }
     
     try {
@@ -251,7 +251,7 @@ async function manipularTextareaMUI(elementoPai, textoParaInserir) {
         resolve();
       }, 50));
     } catch (erro) {
-      console.error("[ERROR]", erro);
+      return false;
     }
     
     await new Promise(resolve => setTimeout(async () => {
@@ -388,27 +388,12 @@ async function obterRespostaIA(promptTexto) {
             })
         });
 
-        if (!resposta.ok) {
-            await mostrarNotificacaoSinc('erro', 'Erro', `Falha na API do Gemini: ${resposta.status}`, 5000);
-            throw new Error("Erro na API do Gemini: " + resposta.status);
-        }
-
         const dadosResposta = await resposta.json();
-
-        const textoGerado = dadosResposta?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (!textoGerado) {
-            await mostrarNotificacaoSinc('erro', 'Erro', 'Resposta inválida da API do Gemini', 5000);
-            throw new Error("Resposta inválida da API do Gemini");
-        }
-
-        return textoGerado;
+        return dadosResposta?.candidates?.[0]?.content?.parts?.[0]?.text || '';
     } catch (erro) {
-        console.error("[ERROR] Falha ao obter resposta da IA:", erro);
-        await mostrarNotificacaoSinc('erro', 'Erro', `Falha ao obter resposta da IA: ${erro.message}`, 5000);
-        throw erro;
+        return '';
     }
 }
-
 
 async function verificarRedacao() {
     const elementoRedacao = document.querySelector("p.MuiTypography-root.MuiTypography-body1.css-m576f2");
@@ -429,7 +414,6 @@ async function verificarRedacao() {
           criteriosAvaliacao: criteriosAvaliacao
         };
         
-        // Seleciona um prompt de geração aleatório
         const promptGeracaoAleatorio = promptsGeracao[Math.floor(Math.random() * promptsGeracao.length)]
             .replace('{dadosRedacao}', JSON.stringify(dadosRedacao));
         
@@ -438,8 +422,7 @@ async function verificarRedacao() {
         const respostaRedacao = await obterRespostaIA(promptGeracaoAleatorio);
         
         if (!respostaRedacao.includes("TITULO:") || !respostaRedacao.includes("TEXTO:")) {
-          await mostrarNotificacaoSinc('erro', 'Erro de Formato', 'A resposta da IA não contém o formato esperado (TITULO/TEXTO)', 5000);
-          throw new Error("Formato de resposta da IA inválido. A resposta não contém 'TITULO:' ou 'TEXTO:'.");
+          return;
         }
         
         const tituloRedacao = respostaRedacao.split("TITULO:")[1].split("TEXTO:")[0].trim();
@@ -447,7 +430,6 @@ async function verificarRedacao() {
         
         await mostrarNotificacaoSinc('info', 'Humanizando', 'Tornando o texto mais natural...', 5000);
         
-        // Seleciona um prompt de humanização aleatório
         const promptHumanizacaoAleatorio = promptsHumanizacao[Math.floor(Math.random() * promptsHumanizacao.length)]
             .replace('{textoRedacao}', textoRedacao);
         
@@ -462,11 +444,8 @@ async function verificarRedacao() {
         
         await mostrarNotificacaoSinc('sucesso', 'Tudo Pronto! 🎉', 'Redação inserida com sucesso! Tudo pronto para enviar!', 5000);
       } catch (erro) {
-        await mostrarNotificacaoSinc('erro', 'Erro Fatal', `Ocorreu um erro: ${erro.message}`, 5000);
-        console.error('[ERROR]', erro);
+        return;
       }
-    } else {
-      await mostrarNotificacaoSinc('erro', 'Página Inválida', 'Você precisa usar o script em uma página de redação. ⚠️', 5000);
     }
 }
 
