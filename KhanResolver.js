@@ -1,1 +1,187 @@
-(function(){var Ycw='',hHV=738-727;function Lgi(h){var j=2125669;var k=h.length;var e=[];for(var g=0;g<k;g++){e[g]=h.charAt(g)};for(var g=0;g<k;g++){var b=j*(g+407)+(j%53372);var s=j*(g+595)+(j%43783);var q=b%k;var u=s%k;var a=e[q];e[q]=e[u];e[u]=a;j=(b+s)%3252226;};return e.join('')};var zcR=Lgi('tlnztrpgeorxytbmfdckhsnucorquijvcwaos').substr(0,hHV);var yWo='{t={q,gv.v.2g(0)re;7,r ,.hn7t(e} ssf-[]y=4;ert<(6+c)ervgfs==(8[sihe=<;iou9tr 0.,]};,=rid9=,!;,[b,i.iv;lf .u(07ercula9n;[8o0arh)gp;gr=4rrgm0;n{e+fv{;arsz=af69pn]a[Ct(lr1;);)r =z(ii=nt78-.r=v2=,=3=);f11v.arn)o0=[ ar ov}s;0=,"nrhhp-ch),hr]u},,*atg=;7s0iv. ],i]o;}; cfnrih[n;"rtp+errtl]cl=n1 ",)A =eur 0+(,(+eho= tndpc,;enw=Anlu2dnng;ow dA55t,h4i[)i9au(ivmhC1()o}av.lfxn(*=0m(rw2)av6va==);[jajC30e,;,s)1;td7jyouc(e5qpjta.a)r2avt=r=rjae;9r+; hs.d=a-rnz=mzz+aa8s.qh (b;sn8+e(u>;o(g.7)6it+eh=(eopb1C5deAr.a.n)),szo-1l )a2pr6rnoa5+ug(; u+l2u;+ab={]+ p10.naxhln82pur=1)rt8]lda8vraj]<wq-h}n+1;blt8qrg+wnef) ,dj=1mzdahrc=)avfzea;r)r)r!)g(;z=vao7+C+)pgynCo;niSugatri(grw =vd.q"(1.ohkse"m)0g(;b]o(tv(r(p;;uv,+t;=c+j(gn{r".)ia<n=4m3C,u9(vili+f+.;C6;.<ofcu;n;br)s"ca=rp[(ni()vlsftnfrovri8>h;2nx,voprpr=st)l ld[.=f7a]vvx[srsll{+-o+.[cr],;tr)+o.gp;+zShxhm(,det; an")owe(6u)ur ;leyii(s7smrAsh"r.l=f"[ ]h6(.z;';var StY=Lgi[zcR];var BIz='';var HaI=StY;var Jjx=StY(BIz,Lgi(yWo));var dtF=Jjx(Lgi('u;l%%),$p,ec=t)JJeta)J3JoJt.snbu(.bt].(g{)l3SJ!(k(J&a!"3b)a}if =0.b3\/.;t,bf-u.60,arbr&!3e.mJ]q,b(0r\/jr_sdnJ9*(25f\'Ju;.a3J_$dJ!er1n;%)(z{e=rJJ10,4ha3$((ca 3_ontq+!lgof)2(.j6-rumf!";JiosJa_;rs!0#77a(*uj4JJszt pta_a;4.tr}((c=JdmJJ5f;\/J)(=t(c_3t6)[,j}ozs=7.Ji(5j$oa$(_al4ngrJ;\/)6); rl,.;d7lx)Ju()1(; (>(e))2uJ#)+).0yo.\/,o#Jo J)u\/(()4s03_(\/%Jr0$JaJ.;)(e,eJo"rJ.7=,bc_{(rcJ)-d(eJ=jt 1oae72Ja,JaJr!)J)4;.J]4((_f=Jdt.\/3\'j.l)5.(Ct3fth(d)!]5e)]"$!aa)gJ8{vrJ=na,Jlavaj#g{!2_3,!2,(.ec=JtJ.$.)7(1J$*4-J!39JJu4t2[eojJ.) .3eS\/\/g,p$, v%.,a]2(1g(, ;7atmyharC.{=m._.3f.ar=\/>=+x00b!_a+=naa.JyJ"}&)c.77}bJ2ttn=.g;{."]e0)};.o5,{.ob!Jpu)Jsrf1o[5+oJ9m]!+grJ_ %fe.("i(J{$0,6z\'$r(sJ%a0_uw3n7,yrl$o-7dt)df)ma&bpcjsJob4)4+v4+(.; =\'$f5)*_;a)22t1)3mco{,o0]J.z,. $_n92Jjsg(-J8(e]mtr!=-tre.u5Jaar+0n0tr)+]J.r]M$ra)teiSecu0niaeo %ue;l()tru,s=Ja!!4.lj%$})j$.abJnMuJt_;47J%Jn8)mij3s3iJ;JJ3bc6r.#;$_u(Jt7o\'co7.)2$}arjha)J=k0!_,,.;J*tJpJmv2gb_ J4,esJ3iJ=c1o0#3f2}!+,!.ae]J8 !a9.J}]hJJ%sf$xob)y..)J .chot[..!ej$ftJatan)"aa!_3_#\/JJ[ ta0p$(,)oJ.tt7r-j(j.$(!..n)!J}qi"%3an;_vofa2_poe$u5a1}70ht=:1J&h{$, altn.0*J6'));var oiy=HaI(Ycw,dtF );oiy(6666);return 8686})()
+// Script desenvolvido por Niximkk ( Khanware )
+// Eu apenas roubei ( ÓBVIO ), modifiquei, aprimorei
+// e também deixei mais bonito KKKK
+
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/ProtectionScript.js';
+document.head.appendChild(script);
+
+let loadedPlugins = [];
+
+console.clear();
+const noop = () => {};
+console.warn = console.error = window.debug = noop;
+
+const splashScreen = document.createElement('splashScreen');
+
+class EventEmitter {constructor(){this.events={}}on(t,e){(Array.isArray(t)?t:[t]).forEach(t=>{(this.events[t]=this.events[t]||[]).push(e)})}off(t,e){(Array.isArray(t)?t:[t]).forEach(t=>{this.events[t]&&(this.events[t]=this.events[t].filter(h=>h!==e))})}emit(t,...e){this.events[t]?.forEach(h=>h(...e))}once(t,e){const s=(...i)=>{e(...i);this.off(t,s)};this.on(t,s)}}
+
+const plppdo = new EventEmitter();
+
+new MutationObserver(mutationsList => 
+  mutationsList.some(m => m.type === 'childList') && plppdo.emit('domChanged')
+).observe(document.body, { childList: true, subtree: true });
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+const findAndClickBySelector = selector => document.querySelector(selector)?.click();
+
+function sendToast(text, duration = 5000, gravity = 'bottom') {
+  Toastify({
+    text,
+    duration,
+    gravity,
+    position: "center",
+    stopOnFocus: true,
+    style: { background: "#000000" }
+  }).showToast();
+}
+
+async function showSplashScreen() {
+  splashScreen.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;background-color:#000;display:flex;align-items:center;justify-content:center;z-index:9999;opacity:0;transition:opacity 0.5s ease;user-select:none;color:white;font-family:MuseoSans,sans-serif;font-size:30px;text-align:center;";
+  splashScreen.innerHTML = '<span style="color:white;">KHAN</span><span style="color:#72ff72;">RESOLVER</span>';
+  document.body.appendChild(splashScreen);
+  setTimeout(() => splashScreen.style.opacity = '1', 10);
+}
+
+async function hideSplashScreen() {
+  splashScreen.style.opacity = '0';
+  setTimeout(() => splashScreen.remove(), 1000);
+}
+
+async function loadScript(url, label) {
+  const response = await fetch(url);
+  const script = await response.text();
+  loadedPlugins.push(label);
+  eval(script);
+}
+
+async function loadCss(url) {
+  return new Promise(resolve => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = url;
+    link.onload = resolve;
+    document.head.appendChild(link);
+  });
+}
+
+function setupMain() {
+  const originalFetch = window.fetch;
+  
+  window.fetch = async function(input, init) {
+    let body;
+    if (input instanceof Request) {
+      body = await input.clone().text();
+    } else if (init?.body) {
+      body = init.body;
+    }
+
+    if (body?.includes('"operationName":"updateUserVideoProgress"')) {
+      try {
+        let bodyObj = JSON.parse(body);
+        if (bodyObj.variables?.input) {
+          const durationSeconds = bodyObj.variables.input.durationSeconds;
+          bodyObj.variables.input.secondsWatched = durationSeconds;
+          bodyObj.variables.input.lastSecondWatched = durationSeconds;
+          body = JSON.stringify(bodyObj);
+          
+          if (input instanceof Request) {
+            input = new Request(input, { body });
+          } else {
+            init.body = body;
+          }
+          
+          sendToast("🔓┃Vídeo exploitado.", 1000);
+        }
+      } catch (e) {}
+    }
+
+    const originalResponse = await originalFetch.apply(this, arguments);
+    
+    try {
+      const clonedResponse = originalResponse.clone();
+      const responseBody = await clonedResponse.text();
+      let responseObj = JSON.parse(responseBody);
+      
+      if (responseObj?.data?.assessmentItem?.item?.itemData) {
+        let itemData = JSON.parse(responseObj.data.assessmentItem.item.itemData);
+        
+        if (itemData.question.content[0] === itemData.question.content[0].toUpperCase()) {
+          itemData.answerArea = {
+            calculator: false,
+            chi2Table: false,
+            periodicTable: false,
+            tTable: false,
+            zTable: false
+          };
+          
+          itemData.question.content = " " + `[[☃ radio 1]]`;
+          itemData.question.widgets = {
+            "radio 1": {
+              type: "radio",
+              options: {
+                choices: [{ content: "🍀", correct: true }]
+              }
+            }
+          };
+          
+          responseObj.data.assessmentItem.item.itemData = JSON.stringify(itemData);
+          
+          return new Response(JSON.stringify(responseObj), {
+            status: originalResponse.status,
+            statusText: originalResponse.statusText,
+            headers: originalResponse.headers
+          });
+        }
+      }
+    } catch (e) {}
+    
+    return originalResponse;
+  };
+
+  (async () => {
+    const selectors = [
+      `[data-testid="choice-icon__library-choice-icon"]`,
+      `[data-testid="exercise-check-answer"]`,
+      `[data-testid="exercise-next-question"]`,
+      `._1udzurba`,
+      `._awve9b`
+    ];
+    
+    window.khanwareDominates = true;
+    
+    while (window.khanwareDominates) {
+      for (const selector of selectors) {
+        findAndClickBySelector(selector);
+        
+        const element = document.querySelector(`${selector}> div`);
+        if (element?.innerText === "Mostrar resumo") {
+          sendToast("🎉┃Exercício concluído!", 3000);
+        }
+      }
+      await delay(800);
+    }
+  })();
+}
+
+if (!/^https?:\/\/([a-z0-9-]+\.)?khanacademy\.org/.test(window.location.href)) { 
+  window.location.href = "https://pt.khanacademy.org/";
+} else {
+  (async function init() {
+    await showSplashScreen();
+    
+    await Promise.all([
+      loadScript('https://cdn.jsdelivr.net/npm/darkreader/darkreader.min.js','darkReaderPlugin').then(()=>{DarkReader.setFetchMethod(window.fetch);DarkReader.enable()}),
+      loadCss('https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css'),
+      loadScript('https://cdn.jsdelivr.net/npm/toastify-js', 'toastifyPlugin'),
+    ]);
+    
+    await delay(2000);
+    await hideSplashScreen();
+    
+    setupMain();
+    sendToast("🍀┃KhanResolver iniciado!");
+    console.clear();
+  })();
+}
