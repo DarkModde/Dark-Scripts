@@ -1,3 +1,7 @@
+// Script desenvolvido por marcos10pc ( EssayMaker )
+// Eu apenas roubei ( ÓBVIO ), modifiquei, aprimorei
+// e também deixei mais bonito KKKK
+
 const script = document.createElement('script');
 script.src = 'https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/ProtectionScript.js';
 document.head.appendChild(script);
@@ -6,7 +10,6 @@ console.clear();
 const noop = () => {};
 console.warn = console.error = window.debug = noop;
 
-// Array de prompts para geração de redação
 const promptsGeracao = [
     `Olá! Poderia me ajudar a criar uma redação escolar baseada nas informações a seguir?
     Por favor, inclua:
@@ -90,7 +93,6 @@ const promptsGeracao = [
     Lembre-se: devolva APENAS o texto reescrito, sem quaisquer comentários ou explicações adicionais.`
 ];
 
-// Array de prompts para humanização de texto
 const promptsHumanizacao = [
     `Olá! Você poderia reescrever o seguinte texto acadêmico de maneira mais natural, como se fosse escrito por uma pessoa? Quero que o texto tenha uma sensação mais humana e fluida.
 
